@@ -9,7 +9,7 @@
 |**Service Type**<br>SAP System (ABAP Cloud)|
 |**Service URL**<br>https://cb6549d4-2ebc-4106-94c5-35da55fca11f.abap.ap21.hana.ondemand.com/sap/opu/odata4/sap/zui_ts_maintenance_order/srvd/sap/zui_ts_maintenance_order/0001/|
 |**Module Name**<br>mmo|
-|**Application Title**<br>App Title|
+|**Application Title**<br>Zarządzanie zleceniami konserwacyjnymi|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.148.10|
