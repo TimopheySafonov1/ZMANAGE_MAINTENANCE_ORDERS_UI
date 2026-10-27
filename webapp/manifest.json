@@ -34,6 +34,19 @@
           "odataVersion": "4.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "MaintenanceOrder-manage": {
+          "semanticObject": "MaintenanceOrder",
+          "action": "manage",
+          "title": "{{MaintenanceOrder-manage.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
     }
   },
   "sap.ui": {
@@ -152,5 +165,9 @@
     "app": {
       "enableLazyLoading": true
     }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "mmo"
   }
 }
