@@ -5,7 +5,7 @@
     {
       "source": "^/sap/(.*)$",
       "target": "/sap/$1",
-      "destination": "abap-cloud-managemaintenanceorders-61c50dc1trial_mmo-fxhkbbfy-dev",
+      "destination": "mmo-abap-workzone",
       "authenticationType": "xsuaa",
       "csrfProtection": false
     },
