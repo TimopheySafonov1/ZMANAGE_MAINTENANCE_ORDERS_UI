@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mc="sap.suite.ui.microchart"
+>
+    <VBox width="12rem" core:require="{ fmt: 'mmo/ext/fragment/HeaderFormatter' }">
+        <mc:DeltaMicroChart
+            id="headerWorkChart"
+            width="12rem"
+            height="4.5rem"
+            hideOnNoData="false"
+            title1="{i18n>headerPlanned}"
+            title2="{i18n>headerActual}"
+            value1="{path: 'TotalPlannedHours', targetType: 'any', formatter: 'fmt.value'}"
+            value2="{path: 'TotalActualHours', targetType: 'any', formatter: 'fmt.value'}"
+            displayValue1="{path: 'TotalPlannedHours', targetType: 'any', formatter: 'fmt.number'}"
+            displayValue2="{path: 'TotalActualHours', targetType: 'any', formatter: 'fmt.number'}"
+            deltaDisplayValue="{parts: [{path: 'TotalPlannedHours', targetType: 'any'}, {path: 'TotalActualHours', targetType: 'any'}], formatter: 'fmt.delta'}"
+            color="{parts: [{path: 'TotalPlannedHours', targetType: 'any'}, {path: 'TotalActualHours', targetType: 'any'}], formatter: 'fmt.actualColor'}"
+        />
+        <Text text="{i18n>headerWorkUnit}" textAlign="End" width="100%" />
+    </VBox>
+</core:FragmentDefinition>

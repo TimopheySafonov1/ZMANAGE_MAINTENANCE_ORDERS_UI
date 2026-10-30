@@ -203,6 +203,8 @@
                 <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
                 <Property Name="TotalPlannedCosts" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="variable"/>
                 <Property Name="TotalActualCosts" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="variable"/>
+                <Property Name="TotalPlannedHours" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2"/>
+                <Property Name="TotalActualHours" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="2"/>
                 <Property Name="LocalLastChangedAt" Type="Edm.DateTimeOffset" Precision="7"/>
                 <Property Name="LastChangedAt" Type="Edm.DateTimeOffset" Precision="7"/>
                 <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
@@ -2015,6 +2017,7 @@
                 <Annotation Term="SAP__common.ValueListReferences">
                     <Collection>
                         <String>../../../../srvd_f4/sap/zc_ts_tech_obj_vh/0001;ps='srvd-zui_ts_maintenance_order-0001';va='com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.et-zc_ts_maintenance_order.techobject'/$metadata</String>
+                        <String>../../../../srvd_f4/sap/zc_ts_tech_obj_hier_vh/0001;ps='srvd-zui_ts_maintenance_order-0001';va='com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.et-zc_ts_maintenance_order.techobject'/$metadata</String>
                     </Collection>
                 </Annotation>
             </Annotations>
@@ -2125,6 +2128,14 @@
                 <Annotation Term="SAP__common.Label" String="Koszty rzeczywiste łącznie"/>
                 <Annotation Term="SAP__core.Computed"/>
                 <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/TotalPlannedHours">
+                <Annotation Term="SAP__common.Label" String="Praca planowana (h)"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/TotalActualHours">
+                <Annotation Term="SAP__common.Label" String="Praca rzeczywista (h)"/>
+                <Annotation Term="SAP__core.Computed"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType/LocalLastChangedAt">
                 <Annotation Term="SAP__core.Computed"/>
@@ -2471,27 +2482,48 @@
                         <PropertyValue Property="CriticalityRepresentation" EnumMember="SAP__UI.CriticalityRepresentationType/WithoutIcon"/>
                     </Record>
                 </Annotation>
+                <Annotation Term="SAP__UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="HeaderStatus"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.DataPoint#OrderStatus"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
                 <Annotation Term="SAP__UI.Facets">
                     <Collection>
                         <Record Type="SAP__UI.CollectionFacet">
-                            <PropertyValue Property="Label" String="Szczegóły zlecenia"/>
-                            <PropertyValue Property="ID" String="OrderDetails"/>
+                            <PropertyValue Property="Label" String="Zakres zlecenia"/>
+                            <PropertyValue Property="ID" String="OrderScope"/>
                             <PropertyValue Property="Facets">
                                 <Collection>
-                                    <Record Type="SAP__UI.ReferenceFacet">
-                                        <PropertyValue Property="Label" String="Informacje o zleceniu"/>
-                                        <PropertyValue Property="ID" String="OrderInformation"/>
-                                        <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#OrderInformation"/>
+                                    <Record Type="SAP__UI.CollectionFacet">
+                                        <PropertyValue Property="Label" String="Szczegóły zlecenia"/>
+                                        <PropertyValue Property="ID" String="OrderDetails"/>
+                                        <PropertyValue Property="Facets">
+                                            <Collection>
+                                                <Record Type="SAP__UI.ReferenceFacet">
+                                                    <PropertyValue Property="Label" String="Informacje o zleceniu"/>
+                                                    <PropertyValue Property="ID" String="OrderInformation"/>
+                                                    <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#OrderInformation"/>
+                                                </Record>
+                                                <Record Type="SAP__UI.ReferenceFacet">
+                                                    <PropertyValue Property="Label" String="Obiekt referencyjny"/>
+                                                    <PropertyValue Property="ID" String="ReferenceObject"/>
+                                                    <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#ReferenceObject"/>
+                                                </Record>
+                                                <Record Type="SAP__UI.ReferenceFacet">
+                                                    <PropertyValue Property="Label" String="Odpowiedzialności"/>
+                                                    <PropertyValue Property="ID" String="Responsibilities"/>
+                                                    <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#Responsibilities"/>
+                                                </Record>
+                                            </Collection>
+                                        </PropertyValue>
                                     </Record>
                                     <Record Type="SAP__UI.ReferenceFacet">
-                                        <PropertyValue Property="Label" String="Obiekt referencyjny"/>
-                                        <PropertyValue Property="ID" String="ReferenceObject"/>
-                                        <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#ReferenceObject"/>
-                                    </Record>
-                                    <Record Type="SAP__UI.ReferenceFacet">
-                                        <PropertyValue Property="Label" String="Odpowiedzialności"/>
-                                        <PropertyValue Property="ID" String="Responsibilities"/>
-                                        <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#Responsibilities"/>
+                                        <PropertyValue Property="Label" String="Szczegółowy opis"/>
+                                        <PropertyValue Property="ID" String="DetailedDescription"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#DetailedDescription"/>
                                     </Record>
                                 </Collection>
                             </PropertyValue>
@@ -2531,14 +2563,6 @@
                         </Record>
                     </Collection>
                 </Annotation>
-                <Annotation Term="SAP__UI.HeaderFacets">
-                    <Collection>
-                        <Record Type="SAP__UI.ReferenceFacet">
-                            <PropertyValue Property="ID" String="HeaderStatus"/>
-                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.DataPoint#OrderStatus"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
                 <Annotation Term="SAP__UI.FieldGroup" Qualifier="Costs">
                     <Record>
                         <PropertyValue Property="Data">
@@ -2548,6 +2572,23 @@
                                 </Record>
                                 <Record Type="SAP__UI.DataField">
                                     <PropertyValue Property="Value" Path="TotalActualCosts"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="TotalPlannedHours"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="TotalActualHours"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="DetailedDescription">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="LongText"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -2562,9 +2603,6 @@
                                 </Record>
                                 <Record Type="SAP__UI.DataField">
                                     <PropertyValue Property="Value" Path="OrderType"/>
-                                </Record>
-                                <Record Type="SAP__UI.DataField">
-                                    <PropertyValue Property="Value" Path="LongText"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>

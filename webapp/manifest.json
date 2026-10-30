@@ -72,7 +72,8 @@
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.fe.templates": {}
+        "sap.fe.templates": {},
+        "sap.suite.ui.microchart": {}
       }
     },
     "contentDensities": {
@@ -150,7 +151,31 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/MaintenanceOrder"
+              "contextPath": "/MaintenanceOrder",
+              "content": {
+                "header": {
+                  "facets": {
+                    "HeaderCosts": {
+                      "type": "XMLFragment",
+                      "template": "mmo.ext.fragment.HeaderCosts",
+                      "title": "{i18n>headerCosts}",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "HeaderStatus"
+                      }
+                    },
+                    "HeaderWork": {
+                      "type": "XMLFragment",
+                      "template": "mmo.ext.fragment.HeaderWork",
+                      "title": "{i18n>headerWork}",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "HeaderCosts"
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
