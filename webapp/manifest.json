@@ -67,15 +67,6 @@
   },
   "sap.ui5": {
     "flexEnabled": true,
-    "extends": {
-      "extensions": {
-        "sap.ui.controllerExtensions": {
-          "sap.fe.templates.ObjectPage.ObjectPageController#mmo::MaintenanceOrderObjectPage": {
-            "controllerName": "mmo.ext.controller.ObjectPageExt"
-          }
-        }
-      }
-    },
     "dependencies": {
       "minUI5Version": "1.148.10",
       "libs": {
@@ -164,7 +155,21 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/MaintenanceOrder"
+              "contextPath": "/MaintenanceOrder",
+              "content": {
+                "header": {
+                  "facets": {
+                    "HeaderKpis": {
+                      "type": "XMLFragment",
+                      "template": "mmo.ext.fragment.HeaderKpis",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "HeaderReference"
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

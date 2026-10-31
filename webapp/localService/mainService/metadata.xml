@@ -2474,19 +2474,17 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <Annotation Term="SAP__UI.DataPoint" Qualifier="OrderStatus">
-                    <Record>
-                        <PropertyValue Property="Value" Path="OrderStatus"/>
-                        <PropertyValue Property="Title" String="Status"/>
-                        <PropertyValue Property="Criticality" Path="OrderStatusCriticality"/>
-                        <PropertyValue Property="CriticalityRepresentation" EnumMember="SAP__UI.CriticalityRepresentationType/WithoutIcon"/>
-                    </Record>
-                </Annotation>
                 <Annotation Term="SAP__UI.HeaderFacets">
                     <Collection>
                         <Record Type="SAP__UI.ReferenceFacet">
-                            <PropertyValue Property="ID" String="HeaderStatus"/>
-                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.DataPoint#OrderStatus"/>
+                            <PropertyValue Property="Label" String="Ogólne"/>
+                            <PropertyValue Property="ID" String="HeaderGeneral"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#HeaderGeneral"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Obiekt referencyjny"/>
+                            <PropertyValue Property="ID" String="HeaderReference"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#ReferenceObject"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -2589,6 +2587,23 @@
                             <Collection>
                                 <Record Type="SAP__UI.DataField">
                                     <PropertyValue Property="Value" Path="LongText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="HeaderGeneral">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="OrderType"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Priority"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="MaintOrdFinalDueDateTime"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>

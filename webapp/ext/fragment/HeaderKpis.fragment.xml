@@ -4,7 +4,7 @@
     xmlns:mc="sap.suite.ui.microchart"
 >
     <HBox
-        id="titleContent"
+        class="mmoHeaderKpis"
         core:require="{ fmt: 'mmo/ext/fragment/HeaderFormatter' }"
         wrap="Wrap"
         alignItems="Start"
