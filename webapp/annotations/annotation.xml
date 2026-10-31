@@ -13,6 +13,747 @@
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="SAP__self.MaintenanceComponentType/ComponentId">
+                <Annotation Term="Common.Label" String="{@i18n>component}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceComponentType/Description">
+                <Annotation Term="Common.Label" String="{@i18n>description}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceComponentType/ItemCategory">
+                <Annotation Term="Common.Label" String="{@i18n>itemCategory}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceComponentType/Uom">
+                <Annotation Term="Common.Label" String="{@i18n>unitOfMeasure}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceComponentType/ReqQuantity">
+                <Annotation Term="Common.Label" String="{@i18n>requiredQuantity}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceComponentType/StorageLoc">
+                <Annotation Term="Common.Label" String="{@i18n>storageLocation}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceComponentType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>componentData}"/>
+                            <PropertyValue Property="ID" String="ComponentData"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ComponentData"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="{@i18n>component}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>components}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="ComponentId"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/TechObject">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObject}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/TechObjectType">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/TechObjectTypeText">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectTypeName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/TechObjectText">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectDescription}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/SortField">
+                <Annotation Term="Common.Label" String="{@i18n>sortField}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/ObjectType">
+                <Annotation Term="Common.Label" String="{@i18n>objectType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/IdentNumber">
+                <Annotation Term="Common.Label" String="{@i18n>objectIdentificationNumber}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/Location">
+                <Annotation Term="Common.Label" String="{@i18n>location}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/IsMarkedForDeletion">
+                <Annotation Term="Common.Label" String="{@i18n>markedForDeletion}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/IsInactive">
+                <Annotation Term="Common.Label" String="{@i18n>inactive}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObject}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/TechObject">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObject}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/TechObjectText">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectDescription}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/TechObjectType">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/TechObjectTypeText">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectTypeName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/FunctionalLocation">
+                <Annotation Term="Common.Label" String="{@i18n>functionalLocation}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/Equipment">
+                <Annotation Term="Common.Label" String="{@i18n>equipment}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/PlanningPlant">
+                <Annotation Term="Common.Label" String="{@i18n>planningPlant}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/PlanningPlantName">
+                <Annotation Term="Common.Label" String="{@i18n>planningPlantName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/Material">
+                <Annotation Term="Common.Label" String="{@i18n>material}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/SerialNumber">
+                <Annotation Term="Common.Label" String="{@i18n>serialNumber}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/Location">
+                <Annotation Term="Common.Label" String="{@i18n>location}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/IdentNumber">
+                <Annotation Term="Common.Label" String="{@i18n>objectIdentificationNumber}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/SuperiorObject">
+                <Annotation Term="Common.Label" String="{@i18n>superiorObject}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectHierarchy}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ResponsiblePersonVHType/PersonResp">
+                <Annotation Term="Common.Label" String="{@i18n>personnelNumber}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ResponsiblePersonVHType/FirstName">
+                <Annotation Term="Common.Label" String="{@i18n>firstName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ResponsiblePersonVHType/LastName">
+                <Annotation Term="Common.Label" String="{@i18n>lastName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ResponsiblePersonVHType/FullName">
+                <Annotation Term="Common.Label" String="{@i18n>fullName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ResponsiblePersonVHType/JobTitle">
+                <Annotation Term="Common.Label" String="{@i18n>jobTitle}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ResponsiblePersonVHType/HourlyRate">
+                <Annotation Term="Common.Label" String="{@i18n>hourlyRate}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ResponsiblePersonVHType/Currency">
+                <Annotation Term="Common.Label" String="{@i18n>currency}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ResponsiblePersonVHType">
+                <Annotation Term="Common.Label" String="{@i18n>personResponsible}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/PrtId">
+                <Annotation Term="Common.Label" String="{@i18n>pRTNumber}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/Description">
+                <Annotation Term="Common.Label" String="{@i18n>description}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/Uom">
+                <Annotation Term="Common.Label" String="{@i18n>unitOfMeasure}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/ReqQuantity">
+                <Annotation Term="Common.Label" String="{@i18n>requiredQuantity}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/StorageLoc">
+                <Annotation Term="Common.Label" String="{@i18n>storageLocation}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/PlannedUsageUnit">
+                <Annotation Term="Common.Label" String="{@i18n>plannedUsageUnit}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/PlannedUsage">
+                <Annotation Term="Common.Label" String="{@i18n>plannedUsageEmptyWholeOperation}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/ActualUsageUnit">
+                <Annotation Term="Common.Label" String="{@i18n>actualUsageUnit}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType/ActualUsage">
+                <Annotation Term="Common.Label" String="{@i18n>actualUsage}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenancePrtType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>pRTData}"/>
+                            <PropertyValue Property="ID" String="PrtData"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#PrtData"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="{@i18n>productionResourceTool}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>productionResourcesTools}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="PrtId"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/OrderId">
+                <Annotation Term="Common.Label" String="{@i18n>orderNumber}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/OrderType">
+                <Annotation Term="Common.Label" String="{@i18n>orderType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/OrderStatus">
+                <Annotation Term="Common.Label" String="{@i18n>status}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/Description">
+                <Annotation Term="Common.Label" String="{@i18n>orderDescription}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/LongText">
+                <Annotation Term="Common.Label" String="{@i18n>longText}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/TechObject">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObject}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/TechObjType">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/PlanningPlant">
+                <Annotation Term="Common.Label" String="{@i18n>planningPlant}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/WorkCenter">
+                <Annotation Term="Common.Label" String="{@i18n>mainWorkCenter}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/Priority">
+                <Annotation Term="Common.Label" String="{@i18n>priority}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/MaintRevision">
+                <Annotation Term="Common.Label" String="{@i18n>revision}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/MaintOrdBasicStartDateTime">
+                <Annotation Term="Common.Label" String="{@i18n>basicStartDate}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/MaintOrdBasicFinishDateTime">
+                <Annotation Term="Common.Label" String="{@i18n>basicFinishDate}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/MaintOrdFinalDueDateTime">
+                <Annotation Term="Common.Label" String="{@i18n>finalDueDate}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/Currency">
+                <Annotation Term="Common.Label" String="{@i18n>currency}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/TotalPlannedCosts">
+                <Annotation Term="Common.Label" String="{@i18n>totalPlannedCosts}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/TotalActualCosts">
+                <Annotation Term="Common.Label" String="{@i18n>totalActualCosts}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/TotalPlannedHours">
+                <Annotation Term="Common.Label" String="{@i18n>plannedWorkH}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/TotalActualHours">
+                <Annotation Term="Common.Label" String="{@i18n>actualWorkH}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType">
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>general}"/>
+                            <PropertyValue Property="ID" String="HeaderGeneral"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#HeaderGeneral"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>referenceObject}"/>
+                            <PropertyValue Property="ID" String="HeaderReference"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ReferenceObject"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="{@i18n>orderScope}"/>
+                            <PropertyValue Property="ID" String="OrderScope"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.CollectionFacet">
+                                        <PropertyValue Property="Label" String="{@i18n>orderDetails}"/>
+                                        <PropertyValue Property="ID" String="OrderDetails"/>
+                                        <PropertyValue Property="Facets">
+                                            <Collection>
+                                                <Record Type="UI.ReferenceFacet">
+                                                    <PropertyValue Property="Label" String="{@i18n>orderInformation}"/>
+                                                    <PropertyValue Property="ID" String="OrderInformation"/>
+                                                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#OrderInformation"/>
+                                                </Record>
+                                                <Record Type="UI.ReferenceFacet">
+                                                    <PropertyValue Property="Label" String="{@i18n>referenceObject}"/>
+                                                    <PropertyValue Property="ID" String="ReferenceObject"/>
+                                                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ReferenceObject"/>
+                                                </Record>
+                                                <Record Type="UI.ReferenceFacet">
+                                                    <PropertyValue Property="Label" String="{@i18n>responsibilities}"/>
+                                                    <PropertyValue Property="ID" String="Responsibilities"/>
+                                                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Responsibilities"/>
+                                                </Record>
+                                            </Collection>
+                                        </PropertyValue>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="{@i18n>detailedDescription}"/>
+                                        <PropertyValue Property="ID" String="DetailedDescription"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#DetailedDescription"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="{@i18n>datesAndCosts}"/>
+                            <PropertyValue Property="ID" String="DatesAndCosts"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="{@i18n>dates}"/>
+                                        <PropertyValue Property="ID" String="Scheduling"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Scheduling"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="{@i18n>costs}"/>
+                                        <PropertyValue Property="ID" String="Costs"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Costs"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>operations}"/>
+                            <PropertyValue Property="ID" String="Operations"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Operations/@UI.LineItem"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>costItems}"/>
+                            <PropertyValue Property="ID" String="CostItems"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Costs/@UI.LineItem"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>status}"/>
+                            <PropertyValue Property="ID" String="Status"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Status/@UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="{@i18n>maintenanceOrder}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>maintenanceOrders}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="OrderId"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="{@i18n>release}"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.releaseOrder(com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceOrderType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="{@i18n>complete}"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.completeOrder(com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceOrderType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OrderId"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Criticality" Path="OrderStatusCriticality"/>
+                            <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
+                            <PropertyValue Property="Value" Path="OrderStatus"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OrderType"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Description"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TechObject"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PlanningPlant"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="WorkCenter"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Priority"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintOrdBasicStartDateTime"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintOrdBasicFinishDateTime"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintOrdFinalDueDateTime"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalPlannedCosts"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalActualCosts"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="{@i18n>release}"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.releaseOrder(com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceOrderType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="{@i18n>complete}"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.completeOrder(com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceOrderType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType/Plant">
+                <Annotation Term="Common.Label" String="{@i18n>planningPlant}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType/MaintenanceRevision">
+                <Annotation Term="Common.Label" String="{@i18n>revision}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType/RevisionType">
+                <Annotation Term="Common.Label" String="{@i18n>revisionType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType/MaintenanceRevisionText">
+                <Annotation Term="Common.Label" String="{@i18n>revisionText}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType/StartDate">
+                <Annotation Term="Common.Label" String="{@i18n>startDate}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType/EndDate">
+                <Annotation Term="Common.Label" String="{@i18n>endDate}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType/RevisionStartDateTime">
+                <Annotation Term="Common.Label" String="{@i18n>revisionStart}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType/RevisionEndDateTime">
+                <Annotation Term="Common.Label" String="{@i18n>revisionEnd}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TimeUnitVHType/TimeUnit">
+                <Annotation Term="Common.Label" String="{@i18n>unit}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TimeUnitVHType/TimeUnitName">
+                <Annotation Term="Common.Label" String="{@i18n>unitName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TimeUnitVHType">
+                <Annotation Term="Common.Label" String="{@i18n>timeUnit}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderStatusType/Status">
+                <Annotation Term="Common.Label" String="{@i18n>status}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderStatusType/StatusDescription">
+                <Annotation Term="Common.Label" String="{@i18n>statusDescription}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderStatusType/StatusChangedAt">
+                <Annotation Term="Common.Label" String="{@i18n>changedAt}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderStatusType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="{@i18n>systemStatus}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>systemStatus}"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.WorkCenterVHType/WorkCenter">
+                <Annotation Term="Common.Label" String="{@i18n>workCenter}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.WorkCenterVHType/Plant">
+                <Annotation Term="Common.Label" String="{@i18n>plant}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.WorkCenterVHType/WorkCenterText">
+                <Annotation Term="Common.Label" String="{@i18n>workCenterText}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.WorkCenterVHType/WorkCenterCategory">
+                <Annotation Term="Common.Label" String="{@i18n>workCenterCategory}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.WorkCenterVHType/WorkCenterCategoryName">
+                <Annotation Term="Common.Label" String="{@i18n>categoryName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectTypeVHType/TechObjectType">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectTypeVHType/TechObjectTypeText">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectTypeName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectTypeVHType">
+                <Annotation Term="Common.Label" String="{@i18n>technicalObjectType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/OperationId">
+                <Annotation Term="Common.Label" String="{@i18n>operationNumber}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/Description">
+                <Annotation Term="Common.Label" String="{@i18n>description}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/PersonResp">
+                <Annotation Term="Common.Label" String="{@i18n>personResponsible}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/PlannedWorkUnit">
+                <Annotation Term="Common.Label" String="{@i18n>plannedWorkUnit}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/PlannedDurationUnit">
+                <Annotation Term="Common.Label" String="{@i18n>plannedDurationUnit}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/ActualWorkUnit">
+                <Annotation Term="Common.Label" String="{@i18n>actualWorkUnit}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/ActualDurationUnit">
+                <Annotation Term="Common.Label" String="{@i18n>actualDurationUnit}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/PlannedWork">
+                <Annotation Term="Common.Label" String="{@i18n>plannedWork}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/PlannedWorkDuration">
+                <Annotation Term="Common.Label" String="{@i18n>plannedDuration}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/ActualWork">
+                <Annotation Term="Common.Label" String="{@i18n>actualWork}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/ActualWorkDuration">
+                <Annotation Term="Common.Label" String="{@i18n>actualDuration}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/PlannedStart">
+                <Annotation Term="Common.Label" String="{@i18n>plannedStart}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/PlannedFinish">
+                <Annotation Term="Common.Label" String="{@i18n>plannedFinish}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/ActualStart">
+                <Annotation Term="Common.Label" String="{@i18n>actualStart}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType/ActualFinish">
+                <Annotation Term="Common.Label" String="{@i18n>actualFinish}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOperationType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="{@i18n>generalInformation}"/>
+                            <PropertyValue Property="ID" String="GeneralInfo"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="{@i18n>basicData}"/>
+                                        <PropertyValue Property="ID" String="BasicData"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#BasicData"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="{@i18n>work}"/>
+                                        <PropertyValue Property="ID" String="Work"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Work"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="{@i18n>dates}"/>
+                                        <PropertyValue Property="ID" String="Dates"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Dates"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>components}"/>
+                            <PropertyValue Property="ID" String="Components"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Components/@UI.LineItem"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>productionResourcesTools}"/>
+                            <PropertyValue Property="ID" String="PRTs"/>
+                            <PropertyValue Property="Target" AnnotationPath="_PRTs/@UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="{@i18n>operation}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>operations}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="OperationId"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.PriorityVHType/Priority">
+                <Annotation Term="Common.Label" String="{@i18n>priority}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.PriorityVHType/PriorityName">
+                <Annotation Term="Common.Label" String="{@i18n>priorityText}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/OperationId">
+                <Annotation Term="Common.Label" String="{@i18n>operation}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/OperationDescription">
+                <Annotation Term="Common.Label" String="{@i18n>operationDescription}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/Currency">
+                <Annotation Term="Common.Label" String="{@i18n>currency}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/PlannedCosts">
+                <Annotation Term="Common.Label" String="{@i18n>plannedCosts}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/ActualCosts">
+                <Annotation Term="Common.Label" String="{@i18n>actualCosts}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/LaborPlannedCosts">
+                <Annotation Term="Common.Label" String="{@i18n>laborPlanned}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/LaborActualCosts">
+                <Annotation Term="Common.Label" String="{@i18n>laborActual}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/MaterialPlannedCosts">
+                <Annotation Term="Common.Label" String="{@i18n>componentsPlanned}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/MaterialActualCosts">
+                <Annotation Term="Common.Label" String="{@i18n>componentsActual}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/PrtPlannedCosts">
+                <Annotation Term="Common.Label" String="{@i18n>pRTsPlanned}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType/PrtActualCosts">
+                <Annotation Term="Common.Label" String="{@i18n>pRTsActual}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceCostsType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>plannedCosts}"/>
+                            <PropertyValue Property="ID" String="PlannedCosts"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Planned"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>actualCosts}"/>
+                            <PropertyValue Property="ID" String="ActualCosts"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Actual"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Actual">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>labor}"/>
+                                    <PropertyValue Property="Value" Path="LaborActualCosts"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>components}"/>
+                                    <PropertyValue Property="Value" Path="MaterialActualCosts"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>productionResourcesTools}"/>
+                                    <PropertyValue Property="Value" Path="PrtActualCosts"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>total}"/>
+                                    <PropertyValue Property="Value" Path="ActualCosts"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Planned">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>labor}"/>
+                                    <PropertyValue Property="Value" Path="LaborPlannedCosts"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>components}"/>
+                                    <PropertyValue Property="Value" Path="MaterialPlannedCosts"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>productionResourcesTools}"/>
+                                    <PropertyValue Property="Value" Path="PrtPlannedCosts"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>total}"/>
+                                    <PropertyValue Property="Value" Path="PlannedCosts"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="{@i18n>operationCosts}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>operationCosts}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="OperationDescription"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="OperationId"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.PlantVHType/Plant">
+                <Annotation Term="Common.Label" String="{@i18n>plant}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.PlantVHType/PlantName">
+                <Annotation Term="Common.Label" String="{@i18n>plantName}"/>
+            </Annotations>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>
