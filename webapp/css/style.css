@@ -1,0 +1,7 @@
+.sapFDynamicPageTitle.mmoTitleContentEnd .sapFDynamicPageTitleMainHeading {
+    flex-grow: 1;
+}
+
+.sapFDynamicPageTitle.mmoTitleContentEnd .sapFDynamicPageTitleMainActions {
+    flex-grow: 0;
+}

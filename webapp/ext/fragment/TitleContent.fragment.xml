@@ -1,0 +1,58 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mc="sap.suite.ui.microchart"
+>
+    <HBox
+        id="titleContent"
+        core:require="{ fmt: 'mmo/ext/fragment/HeaderFormatter' }"
+        wrap="Wrap"
+        alignItems="Start"
+    >
+        <VBox class="sapUiMediumMarginEnd">
+            <Title text="{i18n>headerStatus}" titleStyle="H5" class="sapUiTinyMarginBottom" />
+            <ObjectStatus
+                text="{OrderStatusText}"
+                icon="{path: 'OrderStatus', formatter: 'fmt.statusIcon'}"
+                state="{path: 'OrderStatus', formatter: 'fmt.statusState'}"
+                class="sapMObjectStatusLarge"
+            />
+        </VBox>
+        <VBox class="sapUiMediumMarginEnd">
+            <Title text="{i18n>headerCosts}" titleStyle="H5" class="sapUiTinyMarginBottom" />
+            <mc:ComparisonMicroChart width="12rem" height="4.5rem" hideOnNoData="false">
+                <mc:data>
+                    <mc:ComparisonMicroChartData
+                        title="{i18n>headerPlanned}"
+                        value="{path: 'TotalPlannedCosts', targetType: 'any', formatter: 'fmt.value'}"
+                        displayValue="{parts: [{path: 'TotalPlannedCosts', targetType: 'any'}, {path: 'Currency', targetType: 'any'}], formatter: 'fmt.amount'}"
+                        color="Neutral"
+                    />
+                    <mc:ComparisonMicroChartData
+                        title="{i18n>headerActual}"
+                        value="{path: 'TotalActualCosts', targetType: 'any', formatter: 'fmt.value'}"
+                        displayValue="{parts: [{path: 'TotalActualCosts', targetType: 'any'}, {path: 'Currency', targetType: 'any'}], formatter: 'fmt.amount'}"
+                        color="{parts: [{path: 'TotalPlannedCosts', targetType: 'any'}, {path: 'TotalActualCosts', targetType: 'any'}], formatter: 'fmt.actualColor'}"
+                    />
+                </mc:data>
+            </mc:ComparisonMicroChart>
+        </VBox>
+        <VBox width="12rem">
+            <Title text="{i18n>headerWork}" titleStyle="H5" class="sapUiTinyMarginBottom" />
+            <mc:DeltaMicroChart
+                width="12rem"
+                height="4.5rem"
+                hideOnNoData="false"
+                title1="{i18n>headerPlanned}"
+                title2="{i18n>headerActual}"
+                value1="{path: 'TotalPlannedHours', targetType: 'any', formatter: 'fmt.value'}"
+                value2="{path: 'TotalActualHours', targetType: 'any', formatter: 'fmt.value'}"
+                displayValue1="{path: 'TotalPlannedHours', targetType: 'any', formatter: 'fmt.number'}"
+                displayValue2="{path: 'TotalActualHours', targetType: 'any', formatter: 'fmt.number'}"
+                deltaDisplayValue="{parts: [{path: 'TotalPlannedHours', targetType: 'any'}, {path: 'TotalActualHours', targetType: 'any'}], formatter: 'fmt.delta'}"
+                color="{parts: [{path: 'TotalPlannedHours', targetType: 'any'}, {path: 'TotalActualHours', targetType: 'any'}], formatter: 'fmt.actualColor'}"
+            />
+            <Text text="{i18n>headerWorkUnit}" textAlign="End" width="100%" />
+        </VBox>
+    </HBox>
+</core:FragmentDefinition>

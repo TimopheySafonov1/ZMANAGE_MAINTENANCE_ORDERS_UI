@@ -4,6 +4,11 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
     const numberFormat = NumberFormat.getFloatInstance({ minFractionDigits: 0, maxFractionDigits: 2 });
     const amountFormat = NumberFormat.getFloatInstance({ minFractionDigits: 2, maxFractionDigits: 2 });
     const toNumber = (value) => Number(value) || 0;
+    const statuses = {
+        CRTD: { icon: "sap-icon://accept", state: "Success" },
+        REL: { icon: "sap-icon://sys-enter-2", state: "Information" },
+        TECO: { icon: "sap-icon://locked", state: "None" }
+    };
 
     return {
         value: toNumber,
@@ -14,6 +19,10 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 
         delta: (planned, actual) => numberFormat.format(Math.abs(toNumber(actual) - toNumber(planned))),
 
-        actualColor: (planned, actual) => (toNumber(actual) > toNumber(planned) ? "Error" : "Good")
+        actualColor: (planned, actual) => (toNumber(actual) > toNumber(planned) ? "Error" : "Good"),
+
+        statusIcon: (status) => statuses[status]?.icon ?? "",
+
+        statusState: (status) => statuses[status]?.state ?? "None"
     };
 });
