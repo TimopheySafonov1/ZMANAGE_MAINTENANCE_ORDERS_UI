@@ -269,20 +269,6 @@
                 <Annotation Term="Common.Label" String="{@i18n>actualWorkH}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType">
-                <Annotation Term="UI.HeaderFacets">
-                    <Collection>
-                        <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="{@i18n>general}"/>
-                            <PropertyValue Property="ID" String="HeaderGeneral"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#HeaderGeneral"/>
-                        </Record>
-                        <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="{@i18n>referenceObject}"/>
-                            <PropertyValue Property="ID" String="HeaderReference"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ReferenceObject"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.CollectionFacet">
@@ -353,6 +339,20 @@
                             <PropertyValue Property="Label" String="{@i18n>status}"/>
                             <PropertyValue Property="ID" String="Status"/>
                             <PropertyValue Property="Target" AnnotationPath="_Status/@UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>general}"/>
+                            <PropertyValue Property="ID" String="HeaderGeneral"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#HeaderGeneral"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>referenceObject}"/>
+                            <PropertyValue Property="ID" String="HeaderReference"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ReferenceObject"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -479,6 +479,9 @@
             <Annotations Target="SAP__self.MaintenanceRevisionVHType/RevisionEndDateTime">
                 <Annotation Term="Common.Label" String="{@i18n>revisionEnd}"/>
             </Annotations>
+            <Annotations Target="SAP__self.MaintenanceRevisionVHType">
+                <Annotation Term="Common.Label" String="{@i18n>revision}"/>
+            </Annotations>
             <Annotations Target="SAP__self.TimeUnitVHType/TimeUnit">
                 <Annotation Term="Common.Label" String="{@i18n>unit}"/>
             </Annotations>
@@ -519,6 +522,9 @@
             </Annotations>
             <Annotations Target="SAP__self.WorkCenterVHType/WorkCenterCategoryName">
                 <Annotation Term="Common.Label" String="{@i18n>categoryName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.WorkCenterVHType">
+                <Annotation Term="Common.Label" String="{@i18n>workCenter}"/>
             </Annotations>
             <Annotations Target="SAP__self.TechObjectTypeVHType/TechObjectType">
                 <Annotation Term="Common.Label" String="{@i18n>technicalObjectType}"/>
@@ -629,11 +635,20 @@
                     </Record>
                 </Annotation>
             </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderTypeVHType/MaintenanceOrderTypeName">
+                <Annotation Term="Common.Label" String="{@i18n>orderTypeName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderTypeVHType">
+                <Annotation Term="Common.Label" String="{@i18n>orderType}"/>
+            </Annotations>
             <Annotations Target="SAP__self.PriorityVHType/Priority">
                 <Annotation Term="Common.Label" String="{@i18n>priority}"/>
             </Annotations>
             <Annotations Target="SAP__self.PriorityVHType/PriorityName">
                 <Annotation Term="Common.Label" String="{@i18n>priorityText}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.PriorityVHType">
+                <Annotation Term="Common.Label" String="{@i18n>orderPriority}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceCostsType/OperationId">
                 <Annotation Term="Common.Label" String="{@i18n>operation}"/>
@@ -753,6 +768,9 @@
             </Annotations>
             <Annotations Target="SAP__self.PlantVHType/PlantName">
                 <Annotation Term="Common.Label" String="{@i18n>plantName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.PlantVHType">
+                <Annotation Term="Common.Label" String="{@i18n>plant}"/>
             </Annotations>
         </Schema>
     </edmx:DataServices>

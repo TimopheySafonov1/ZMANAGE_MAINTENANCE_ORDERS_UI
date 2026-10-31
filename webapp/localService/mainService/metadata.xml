@@ -2474,20 +2474,6 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <Annotation Term="SAP__UI.HeaderFacets">
-                    <Collection>
-                        <Record Type="SAP__UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="Ogólne"/>
-                            <PropertyValue Property="ID" String="HeaderGeneral"/>
-                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#HeaderGeneral"/>
-                        </Record>
-                        <Record Type="SAP__UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="Obiekt referencyjny"/>
-                            <PropertyValue Property="ID" String="HeaderReference"/>
-                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#ReferenceObject"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
                 <Annotation Term="SAP__UI.Facets">
                     <Collection>
                         <Record Type="SAP__UI.CollectionFacet">
@@ -2558,6 +2544,20 @@
                             <PropertyValue Property="Label" String="Status"/>
                             <PropertyValue Property="ID" String="Status"/>
                             <PropertyValue Property="Target" AnnotationPath="_Status/@SAP__UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Ogólne"/>
+                            <PropertyValue Property="ID" String="HeaderGeneral"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#HeaderGeneral"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Obiekt referencyjny"/>
+                            <PropertyValue Property="ID" String="HeaderReference"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#ReferenceObject"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -2824,7 +2824,7 @@
                 <Annotation Term="SAP__common.Label" String="Koniec rewizji"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceRevisionVHType">
-                <Annotation Term="SAP__common.Label" String="Maintenance Revision Value Help"/>
+                <Annotation Term="SAP__common.Label" String="Rewizja"/>
                 <Annotation Term="SAP__UI.LineItem">
                     <Collection>
                         <Record Type="SAP__UI.DataField">
@@ -3039,7 +3039,7 @@
                 <Annotation Term="SAP__common.Label" String="Nazwa kategorii"/>
             </Annotations>
             <Annotations Target="SAP__self.WorkCenterVHType">
-                <Annotation Term="SAP__common.Label" String="Work Center Value Help"/>
+                <Annotation Term="SAP__common.Label" String="Gniazdo robocze"/>
                 <Annotation Term="SAP__UI.LineItem">
                     <Collection>
                         <Record Type="SAP__UI.DataField">
@@ -3889,10 +3889,10 @@
                 <Annotation Term="SAP__common.Text" Path="MaintenanceOrderTypeName"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderTypeVHType/MaintenanceOrderTypeName">
-                <Annotation Term="SAP__common.Label" String="Order Type Text"/>
+                <Annotation Term="SAP__common.Label" String="Nazwa rodzaju zlecenia"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderTypeVHType">
-                <Annotation Term="SAP__common.Label" String="Maintenance Order Type Value Help"/>
+                <Annotation Term="SAP__common.Label" String="Rodzaj zlecenia"/>
             </Annotations>
             <Annotations Target="SAP__self.Container/MaintenanceOrderTypeVH">
                 <Annotation Term="SAP__capabilities.SearchRestrictions">
@@ -3933,7 +3933,7 @@
                 <Annotation Term="SAP__common.Label" String="Tekst priorytetu"/>
             </Annotations>
             <Annotations Target="SAP__self.PriorityVHType">
-                <Annotation Term="SAP__common.Label" String="Maintenance Order Priority Value Help"/>
+                <Annotation Term="SAP__common.Label" String="Priorytet zlecenia"/>
                 <Annotation Term="SAP__UI.LineItem">
                     <Collection>
                         <Record Type="SAP__UI.DataField">
@@ -4294,7 +4294,7 @@
                 <Annotation Term="SAP__common.Label" String="Nazwa zakładu"/>
             </Annotations>
             <Annotations Target="SAP__self.PlantVHType">
-                <Annotation Term="SAP__common.Label" String="Plant Value Help"/>
+                <Annotation Term="SAP__common.Label" String="Zakład"/>
             </Annotations>
             <Annotations Target="SAP__self.Container/PlantVH">
                 <Annotation Term="SAP__capabilities.SearchRestrictions">
