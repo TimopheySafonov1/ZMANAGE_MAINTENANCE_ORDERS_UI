@@ -76,6 +76,9 @@
         "sap.ui.controllerExtensions": {
           "sap.fe.templates.ObjectPage.ObjectPageController#mmo::MaintenanceOrderObjectPage": {
             "controllerName": "mmo.ext.controller.ObjectPageExt"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController#mmo::MaintenanceOperationObjectPage": {
+            "controllerName": "mmo.ext.controller.OperationPageExt"
           }
         }
       }
@@ -241,6 +244,30 @@
                 "_PRTs": {
                   "detail": {
                     "route": "MaintenancePrtObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "_Components/@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "GridTable",
+                    "rowCountMode": "Fixed",
+                    "rowCount": 10,
+                    "creationMode": {
+                      "name": "Inline",
+                      "createAtEnd": true
+                    }
+                  }
+                },
+                "_PRTs/@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "GridTable",
+                    "rowCountMode": "Fixed",
+                    "rowCount": 10,
+                    "creationMode": {
+                      "name": "Inline",
+                      "createAtEnd": true
+                    }
                   }
                 }
               }

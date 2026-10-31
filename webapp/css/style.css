@@ -1,3 +1,7 @@
 .sapFDynamicPageHeaderContent > .sapMFlexBox > .sapMFlexItem:has(.mmoHeaderKpis) {
     margin-left: auto;
 }
+
+.mmoNoEmptyRows .sapUiTablePlaceholder {
+    display: none;
+}
