@@ -139,6 +139,26 @@
           "pattern": "MaintenanceOrder({key}):?query:",
           "name": "MaintenanceOrderObjectPage",
           "target": "MaintenanceOrderObjectPage"
+        },
+        {
+          "pattern": "MaintenanceOrder({key})/_Operations({key2}):?query:",
+          "name": "MaintenanceOperationObjectPage",
+          "target": "MaintenanceOperationObjectPage"
+        },
+        {
+          "pattern": "MaintenanceOrder({key})/_Operations({key2})/_Components({key3}):?query:",
+          "name": "MaintenanceComponentObjectPage",
+          "target": "MaintenanceComponentObjectPage"
+        },
+        {
+          "pattern": "MaintenanceOrder({key})/_Operations({key2})/_PRTs({key3}):?query:",
+          "name": "MaintenancePrtObjectPage",
+          "target": "MaintenancePrtObjectPage"
+        },
+        {
+          "pattern": "MaintenanceOrder({key})/_Costs({key2}):?query:",
+          "name": "MaintenanceCostsObjectPage",
+          "target": "MaintenanceCostsObjectPage"
         }
       ],
       "targets": {
@@ -175,6 +195,18 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/MaintenanceOrder",
+              "navigation": {
+                "_Operations": {
+                  "detail": {
+                    "route": "MaintenanceOperationObjectPage"
+                  }
+                },
+                "_Costs": {
+                  "detail": {
+                    "route": "MaintenanceCostsObjectPage"
+                  }
+                }
+              },
               "content": {
                 "header": {
                   "facets": {
@@ -189,6 +221,62 @@
                   }
                 }
               }
+            }
+          }
+        },
+        "MaintenanceOperationObjectPage": {
+          "type": "Component",
+          "id": "MaintenanceOperationObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/MaintenanceOrder/_Operations",
+              "navigation": {
+                "_Components": {
+                  "detail": {
+                    "route": "MaintenanceComponentObjectPage"
+                  }
+                },
+                "_PRTs": {
+                  "detail": {
+                    "route": "MaintenancePrtObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "MaintenanceComponentObjectPage": {
+          "type": "Component",
+          "id": "MaintenanceComponentObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/MaintenanceOrder/_Operations/_Components"
+            }
+          }
+        },
+        "MaintenancePrtObjectPage": {
+          "type": "Component",
+          "id": "MaintenancePrtObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/MaintenanceOrder/_Operations/_PRTs"
+            }
+          }
+        },
+        "MaintenanceCostsObjectPage": {
+          "type": "Component",
+          "id": "MaintenanceCostsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/MaintenanceOrder/_Costs"
             }
           }
         }
