@@ -594,6 +594,11 @@
                                         <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#BasicData"/>
                                     </Record>
                                     <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="{@i18n>execution}"/>
+                                        <PropertyValue Property="ID" String="Execution"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Execution"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
                                         <PropertyValue Property="Label" String="{@i18n>work}"/>
                                         <PropertyValue Property="ID" String="Work"/>
                                         <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Work"/>
