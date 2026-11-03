@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Avatar
+        core:require="{ preview: 'mmo/ext/handler/AttachmentPreview' }"
+        src="{ parts: [ { path: 'MimeType' }, { path: 'AttachmentUuid', targetType: 'any' }, { path: 'IsActiveEntity', targetType: 'any' }, { path: 'FileName' } ], formatter: 'preview.thumbnail' }"
+        visible="{= !!${MimeType} }"
+        displayShape="Square"
+        displaySize="S"
+        imageFitType="Cover"
+        tooltip="{i18n>attachmentPreview}"
+        press="preview.open"
+    />
+</core:FragmentDefinition>

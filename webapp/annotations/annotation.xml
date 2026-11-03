@@ -13,6 +13,51 @@
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/FileName">
+                <Annotation Term="Common.Label" String="{@i18n>fileName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/MimeType">
+                <Annotation Term="Common.Label" String="{@i18n>fileType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/Attachment">
+                <Annotation Term="Common.Label" String="{@i18n>file}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/Description">
+                <Annotation Term="Common.Label" String="{@i18n>description}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/CreatedBy">
+                <Annotation Term="Common.Label" String="{@i18n>addedBy}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/CreatedAt">
+                <Annotation Term="Common.Label" String="{@i18n>addedOn}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>attachmentData}"/>
+                            <PropertyValue Property="ID" String="AttachmentData"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#AttachmentData"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="{@i18n>attachment}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>attachments}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="FileName"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
             <Annotations Target="SAP__self.MaintenanceComponentType/ComponentId">
                 <Annotation Term="Common.Label" String="{@i18n>component}"/>
             </Annotations>
@@ -157,6 +202,18 @@
             <Annotations Target="SAP__self.ResponsiblePersonVHType">
                 <Annotation Term="Common.Label" String="{@i18n>personResponsible}"/>
             </Annotations>
+            <Annotations Target="SAP__self.FileTypeVHType/MimeType">
+                <Annotation Term="Common.Label" String="{@i18n>fileType}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.FileTypeVHType/FileTypeName">
+                <Annotation Term="Common.Label" String="{@i18n>fileTypeName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.FileTypeVHType/Extensions">
+                <Annotation Term="Common.Label" String="{@i18n>extensions}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.FileTypeVHType">
+                <Annotation Term="Common.Label" String="{@i18n>fileType}"/>
+            </Annotations>
             <Annotations Target="SAP__self.MaintenancePrtType/PrtId">
                 <Annotation Term="Common.Label" String="{@i18n>pRTNumber}"/>
             </Annotations>
@@ -269,6 +326,20 @@
                 <Annotation Term="Common.Label" String="{@i18n>actualWorkH}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType">
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>general}"/>
+                            <PropertyValue Property="ID" String="HeaderGeneral"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#HeaderGeneral"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>referenceObject}"/>
+                            <PropertyValue Property="ID" String="HeaderReference"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ReferenceObject"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.CollectionFacet">
@@ -340,19 +411,10 @@
                             <PropertyValue Property="ID" String="Status"/>
                             <PropertyValue Property="Target" AnnotationPath="_Status/@UI.LineItem"/>
                         </Record>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="UI.HeaderFacets">
-                    <Collection>
                         <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="{@i18n>general}"/>
-                            <PropertyValue Property="ID" String="HeaderGeneral"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#HeaderGeneral"/>
-                        </Record>
-                        <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="{@i18n>referenceObject}"/>
-                            <PropertyValue Property="ID" String="HeaderReference"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ReferenceObject"/>
+                            <PropertyValue Property="Label" String="{@i18n>attachments}"/>
+                            <PropertyValue Property="ID" String="Attachments"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Attachments/@UI.LineItem"/>
                         </Record>
                     </Collection>
                 </Annotation>

@@ -223,6 +223,29 @@
                     }
                   }
                 }
+              },
+              "controlConfiguration": {
+                "_Attachments/@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "creationMode": {
+                      "name": "Inline",
+                      "createAtEnd": true
+                    }
+                  },
+                  "columns": {
+                    "AttachmentPreview": {
+                      "header": "{i18n>attachmentPreview}",
+                      "template": "mmo.ext.fragment.AttachmentPreview",
+                      "width": "6rem",
+                      "horizontalAlign": "Center",
+                      "position": {
+                        "placement": "Before",
+                        "anchor": "DataField::Attachment"
+                      }
+                    }
+                  }
+                }
               }
             }
           }

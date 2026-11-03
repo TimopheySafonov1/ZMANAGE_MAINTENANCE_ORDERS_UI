@@ -57,6 +57,34 @@
     <edmx:DataServices>
         <Schema Namespace="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001" Alias="SAP__self">
             <Annotation Term="SAP__core.SchemaVersion" String="1.0.0"/>
+            <EntityType Name="MaintenanceAttachmentType">
+                <Key>
+                    <PropertyRef Name="AttachmentUuid"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="AttachmentUuid" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="OrderUuid" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="128"/>
+                <Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="128"/>
+                <Property Name="FileTypeName" Type="Edm.String" Nullable="false" MaxLength="60"/>
+                <Property Name="Attachment" Type="Edm.Stream"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="80"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="CreatedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LocalLastChangedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="DraftEntityCreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="DraftEntityLastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="__EntityControl" Type="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.EntityControl"/>
+                <Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.SAP__Message)" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.I_DraftAdministrativeDataType"/>
+                <NavigationProperty Name="SiblingEntity" Type="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceAttachmentType"/>
+                <NavigationProperty Name="_MaintenanceOrder" Type="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceOrderType" Nullable="false" Partner="_Attachments">
+                    <ReferentialConstraint Property="OrderUuid" ReferencedProperty="OrderUuid"/>
+                </NavigationProperty>
+            </EntityType>
             <EntityType Name="MaintenanceComponentType">
                 <Key>
                     <PropertyRef Name="ComponentUuid"/>
@@ -136,6 +164,14 @@
                 <Property Name="JobTitle" Type="Edm.String" Nullable="false" MaxLength="40"/>
                 <Property Name="HourlyRate" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="variable"/>
                 <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+            </EntityType>
+            <EntityType Name="FileTypeVHType">
+                <Key>
+                    <PropertyRef Name="MimeType"/>
+                </Key>
+                <Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="128"/>
+                <Property Name="FileTypeName" Type="Edm.String" Nullable="false" MaxLength="60"/>
+                <Property Name="Extensions" Type="Edm.String" Nullable="false" MaxLength="40"/>
             </EntityType>
             <EntityType Name="MaintenancePrtType">
                 <Key>
@@ -219,6 +255,9 @@
                 <Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.SAP__Message)" Nullable="false"/>
                 <NavigationProperty Name="DraftAdministrativeData" Type="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.I_DraftAdministrativeDataType"/>
                 <NavigationProperty Name="SiblingEntity" Type="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceOrderType"/>
+                <NavigationProperty Name="_Attachments" Type="Collection(com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceAttachmentType)" Partner="_MaintenanceOrder">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
                 <NavigationProperty Name="_Costs" Type="Collection(com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceCostsType)" Partner="_MaintenanceOrder">
                     <OnDelete Action="Cascade"/>
                 </NavigationProperty>
@@ -431,6 +470,7 @@
                 <Property Name="LimitedRank" Type="Edm.Int64" Nullable="false"/>
             </ComplexType>
             <ComplexType Name="MaintenanceOrderCbAControl">
+                <Property Name="_Attachments" Type="Edm.Boolean" Nullable="false"/>
                 <Property Name="_Operations" Type="Edm.Boolean" Nullable="false"/>
             </ComplexType>
             <ComplexType Name="MaintenanceOperationCbAControl">
@@ -482,7 +522,13 @@
                 <Parameter Name="_it" Type="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceOrderType" Nullable="false"/>
             </Action>
             <EntityContainer Name="Container">
+                <EntitySet Name="FileTypeVH" EntityType="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.FileTypeVHType"/>
                 <EntitySet Name="I_DraftAdministrativeData" EntityType="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.I_DraftAdministrativeDataType"/>
+                <EntitySet Name="MaintenanceAttachment" EntityType="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceAttachmentType">
+                    <NavigationPropertyBinding Path="DraftAdministrativeData" Target="I_DraftAdministrativeData"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="MaintenanceAttachment"/>
+                    <NavigationPropertyBinding Path="_MaintenanceOrder" Target="MaintenanceOrder"/>
+                </EntitySet>
                 <EntitySet Name="MaintenanceComponent" EntityType="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceComponentType">
                     <NavigationPropertyBinding Path="DraftAdministrativeData" Target="I_DraftAdministrativeData"/>
                     <NavigationPropertyBinding Path="SiblingEntity" Target="MaintenanceComponent"/>
@@ -505,6 +551,7 @@
                 <EntitySet Name="MaintenanceOrder" EntityType="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.MaintenanceOrderType">
                     <NavigationPropertyBinding Path="DraftAdministrativeData" Target="I_DraftAdministrativeData"/>
                     <NavigationPropertyBinding Path="SiblingEntity" Target="MaintenanceOrder"/>
+                    <NavigationPropertyBinding Path="_Attachments" Target="MaintenanceAttachment"/>
                     <NavigationPropertyBinding Path="_Costs" Target="MaintenanceCosts"/>
                     <NavigationPropertyBinding Path="_Operations" Target="MaintenanceOperation"/>
                     <NavigationPropertyBinding Path="_Status" Target="MaintenanceOrderStatus"/>
@@ -530,6 +577,336 @@
                 <EntitySet Name="TimeUnitVH" EntityType="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.TimeUnitVHType"/>
                 <EntitySet Name="WorkCenterVH" EntityType="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.WorkCenterVHType"/>
             </EntityContainer>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/AttachmentUuid">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="UUID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="16 Byte UUID in 16 Bytes (Raw Format)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/OrderUuid">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="UUID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="16 Byte UUID in 16 Bytes (Raw Format)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/FileName">
+                <Annotation Term="SAP__common.Label" String="Nazwa pliku"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/MimeType">
+                <Annotation Term="SAP__core.IsMediaType"/>
+                <Annotation Term="SAP__common.Label" String="Typ pliku"/>
+                <Annotation Term="SAP__common.Text" Path="FileTypeName">
+                    <Annotation Term="SAP__UI.TextArrangement" EnumMember="SAP__UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="SAP__common.ValueListForValidation" String=""/>
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/zc_ts_file_type_vh/0001;ps='srvd-zui_ts_maintenance_order-0001';va='com.sap.gateway.srvd.zui_ts_maintenance_order.v0001.et-zc_ts_maintenance_attach.mimetype'/$metadata</String>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/FileTypeName">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/Attachment">
+                <Annotation Term="SAP__core.ContentDisposition">
+                    <Record>
+                        <PropertyValue Property="Filename" Path="FileName"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.MediaType" Path="MimeType"/>
+                <Annotation Term="SAP__common.Label" String="Plik"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/Description">
+                <Annotation Term="SAP__common.Label" String="Opis"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/CreatedBy">
+                <Annotation Term="SAP__common.Label" String="Dodał"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/CreatedAt">
+                <Annotation Term="SAP__common.Label" String="Dodano"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/LocalLastChangedAt">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/HasDraftEntity">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Has Draft"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Draft - Indicator - Has draft document"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/DraftEntityCreationDateTime">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Draft Created On"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/DraftEntityLastChangeDateTime">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Draft Last Changed On"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/HasActiveEntity">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Has active"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Draft - Indicator - Has active document"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/IsActiveEntity">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Is active"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Draft - Indicator - Is active document"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType/__EntityControl">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/MaintenanceAttachment">
+                <Annotation Term="SAP__capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="SiblingEntity"/>
+                                    <PropertyValue Property="DeepUpdateSupport">
+                                        <Record>
+                                            <PropertyValue Property="Supported" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="_MaintenanceOrder"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                    <PropertyValue Property="DeepUpdateSupport">
+                                        <Record>
+                                            <PropertyValue Property="Supported" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__common.DraftNode"/>
+                <Annotation Term="SAP__common.DraftActivationVia">
+                    <Collection>
+                        <String>SAP__self.Container/MaintenanceOrder</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="Filterable" Bool="true"/>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="DraftEntityCreationDateTime"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="DraftEntityLastChangeDateTime"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>__EntityControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>__EntityControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="DeltaUpdateSupported" Bool="true"/>
+                        <PropertyValue Property="Updatable" Path="__EntityControl/Updatable"/>
+                        <PropertyValue Property="NonUpdatableNavigationProperties">
+                            <Collection>
+                                <PropertyPath>DraftAdministrativeData</PropertyPath>
+                                <PropertyPath>SiblingEntity</PropertyPath>
+                                <PropertyPath>_MaintenanceOrder</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeepUpdateSupport">
+                    <Record>
+                        <PropertyValue Property="ContentIDSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Path="__EntityControl/Deletable"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceAttachmentType">
+                <Annotation Term="SAP__common.Label" String="Maintenance Attachment - Projection"/>
+                <Annotation Term="SAP__common.SideEffects" Qualifier="SAP__Field_Attachment">
+                    <Record Type="SAP__common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>Attachment</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <String>MimeType</String>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Dane załącznika"/>
+                            <PropertyValue Property="ID" String="AttachmentData"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#AttachmentData"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="AttachmentData">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Attachment"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="FileName"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Description"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="MimeType"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="CreatedBy"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="CreatedAt"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Załącznik"/>
+                        <PropertyValue Property="TypeNamePlural" String="Załączniki"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="FileName"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="Description"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Attachment"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/High"/>
+                            <Annotation Term="SAP__HTML5.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="18rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Description"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/High"/>
+                            <Annotation Term="SAP__HTML5.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="20rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="MimeType"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/High"/>
+                            <Annotation Term="SAP__HTML5.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="14rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
+                            <Annotation Term="SAP__HTML5.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="9rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedAt"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
+                            <Annotation Term="SAP__HTML5.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="12rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.PresentationVariant">
+                    <Record>
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="SAP__common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="CreatedAt"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
+            </Annotations>
             <Annotations Target="SAP__self.MaintenanceComponentType/ComponentUuid">
                 <Annotation Term="SAP__core.Computed"/>
                 <Annotation Term="SAP__UI.Hidden"/>
@@ -1517,6 +1894,60 @@
                     </Record>
                 </Annotation>
             </Annotations>
+            <Annotations Target="SAP__self.FileTypeVHType/MimeType">
+                <Annotation Term="SAP__common.Label" String="Typ pliku"/>
+                <Annotation Term="SAP__common.Text" Path="FileTypeName">
+                    <Annotation Term="SAP__UI.TextArrangement" EnumMember="SAP__UI.TextArrangementType/TextFirst"/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.FileTypeVHType/FileTypeName">
+                <Annotation Term="SAP__common.Label" String="Nazwa typu pliku"/>
+            </Annotations>
+            <Annotations Target="SAP__self.FileTypeVHType/Extensions">
+                <Annotation Term="SAP__common.Label" String="Rozszerzenia"/>
+            </Annotations>
+            <Annotations Target="SAP__self.FileTypeVHType">
+                <Annotation Term="SAP__common.Label" String="Typ pliku"/>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="MimeType"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Extensions"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/FileTypeVH">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="true"/>
+                        <PropertyValue Property="UnsupportedExpressions" EnumMember="SAP__capabilities.SearchExpressions/AND SAP__capabilities.SearchExpressions/NOT SAP__capabilities.SearchExpressions/group "/>
+                        <PropertyValue Property="SearchSyntax" String="https://url.sap/odata-search"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
             <Annotations Target="SAP__self.MaintenancePrtType/PrtUuid">
                 <Annotation Term="SAP__core.Computed"/>
                 <Annotation Term="SAP__UI.Hidden"/>
@@ -2260,6 +2691,14 @@
                                     </PropertyValue>
                                 </Record>
                                 <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="_Attachments"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Path="__CreateByAssociationControl/_Attachments"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
                                     <PropertyValue Property="NavigationProperty" NavigationPropertyPath="_Costs"/>
                                     <PropertyValue Property="InsertRestrictions">
                                         <Record>
@@ -2351,6 +2790,7 @@
                             <Collection>
                                 <PropertyPath>DraftAdministrativeData</PropertyPath>
                                 <PropertyPath>SiblingEntity</PropertyPath>
+                                <PropertyPath>_Attachments</PropertyPath>
                                 <PropertyPath>_Costs</PropertyPath>
                                 <PropertyPath>_Operations</PropertyPath>
                                 <PropertyPath>_Status</PropertyPath>
@@ -2378,6 +2818,9 @@
                         <PropertyPath>LocalLastChangedAt</PropertyPath>
                     </Collection>
                 </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/_Attachments">
+                <Annotation Term="SAP__common.Composition"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType/_Costs">
                 <Annotation Term="SAP__common.Composition"/>
@@ -2517,6 +2960,20 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+                <Annotation Term="SAP__UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Ogólne"/>
+                            <PropertyValue Property="ID" String="HeaderGeneral"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#HeaderGeneral"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Obiekt referencyjny"/>
+                            <PropertyValue Property="ID" String="HeaderReference"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#ReferenceObject"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
                 <Annotation Term="SAP__UI.Facets">
                     <Collection>
                         <Record Type="SAP__UI.CollectionFacet">
@@ -2588,19 +3045,10 @@
                             <PropertyValue Property="ID" String="Status"/>
                             <PropertyValue Property="Target" AnnotationPath="_Status/@SAP__UI.LineItem"/>
                         </Record>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="SAP__UI.HeaderFacets">
-                    <Collection>
                         <Record Type="SAP__UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="Ogólne"/>
-                            <PropertyValue Property="ID" String="HeaderGeneral"/>
-                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#HeaderGeneral"/>
-                        </Record>
-                        <Record Type="SAP__UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="Obiekt referencyjny"/>
-                            <PropertyValue Property="ID" String="HeaderReference"/>
-                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#ReferenceObject"/>
+                            <PropertyValue Property="Label" String="Załączniki"/>
+                            <PropertyValue Property="ID" String="Attachments"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Attachments/@SAP__UI.LineItem"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -4516,6 +4964,11 @@
                 <Annotation Term="SAP__common.Label" String="Dyn. Field Control"/>
                 <Annotation Term="SAP__common.Heading" String="Dynamic Field Control"/>
                 <Annotation Term="SAP__common.QuickInfo" String="Dynamic Field Property"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderCbAControl/_Attachments">
+                <Annotation Term="SAP__common.Label" String="Dynamic CbA-Control"/>
+                <Annotation Term="SAP__common.Heading" String="Dynamic Create by Association Control"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Dynamic Create via Association Control Property"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderCbAControl/_Operations">
                 <Annotation Term="SAP__common.Label" String="Dynamic CbA-Control"/>
