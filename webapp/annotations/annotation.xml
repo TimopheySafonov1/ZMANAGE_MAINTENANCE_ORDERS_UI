@@ -64,9 +64,6 @@
             <Annotations Target="SAP__self.MaintenanceComponentType/Description">
                 <Annotation Term="Common.Label" String="{@i18n>description}"/>
             </Annotations>
-            <Annotations Target="SAP__self.MaintenanceComponentType/ItemCategory">
-                <Annotation Term="Common.Label" String="{@i18n>itemCategory}"/>
-            </Annotations>
             <Annotations Target="SAP__self.MaintenanceComponentType/Uom">
                 <Annotation Term="Common.Label" String="{@i18n>unitOfMeasure}"/>
             </Annotations>
@@ -107,6 +104,23 @@
                 </Annotation>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceComponentType">
+                <Annotation Term="UI.PresentationVariant" Qualifier="Sorted">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="ComponentId"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.LineItem</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.ReferenceFacet">
@@ -326,6 +340,23 @@
                 <Annotation Term="Common.Label" String="{@i18n>actualUsage}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenancePrtType">
+                <Annotation Term="UI.PresentationVariant" Qualifier="Sorted">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="PrtId"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.LineItem</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.ReferenceFacet">
@@ -483,7 +514,7 @@
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>operations}"/>
                             <PropertyValue Property="ID" String="Operations"/>
-                            <PropertyValue Property="Target" AnnotationPath="_Operations/@UI.LineItem"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Operations/@UI.PresentationVariant#Sorted"/>
                         </Record>
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>costItems}"/>
@@ -727,6 +758,27 @@
                 <Annotation Term="Common.Label" String="{@i18n>actualFinish}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOperationType">
+                <Annotation Term="UI.PresentationVariant" Qualifier="Sorted">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="Stage"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="OperationId"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.LineItem</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.CollectionFacet">
@@ -760,12 +812,12 @@
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>components}"/>
                             <PropertyValue Property="ID" String="Components"/>
-                            <PropertyValue Property="Target" AnnotationPath="_Components/@UI.LineItem"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Components/@UI.PresentationVariant#Sorted"/>
                         </Record>
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>productionResourcesTools}"/>
                             <PropertyValue Property="ID" String="PRTs"/>
-                            <PropertyValue Property="Target" AnnotationPath="_PRTs/@UI.LineItem"/>
+                            <PropertyValue Property="Target" AnnotationPath="_PRTs/@UI.PresentationVariant#Sorted"/>
                         </Record>
                     </Collection>
                 </Annotation>

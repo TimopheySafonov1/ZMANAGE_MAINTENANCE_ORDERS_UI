@@ -1,5 +1,26 @@
-sap.ui.define(["sap/ui/core/mvc/ControllerExtension", "mmo/ext/handler/ApplyValidation"], function (ControllerExtension, ApplyValidation) {
+sap.ui.define([
+    "sap/ui/core/mvc/ControllerExtension",
+    "mmo/ext/handler/ApplyValidation",
+    "mmo/ext/handler/StockValueHelp"
+], function (ControllerExtension, ApplyValidation, StockValueHelp) {
     "use strict";
+
+    const EDITABLE = 7;
+
+    async function prefillActualFinish(context) {
+        if (!context) {
+            return;
+        }
+        const [isActive, finish, description, control] = await context.requestProperty([
+            "IsActiveEntity",
+            "ActualFinish",
+            "Description",
+            "__FieldControl/ActualFinish"
+        ]);
+        if (isActive === false && !finish && description && control === EDITABLE) {
+            context.setProperty("ActualFinish", new Date().toISOString());
+        }
+    }
 
     function hideEmptyRows(innerTable) {
         const rowMode = innerTable.getRowMode?.();
@@ -29,10 +50,13 @@ sap.ui.define(["sap/ui/core/mvc/ControllerExtension", "mmo/ext/handler/ApplyVali
                 },
 
                 onAfterBinding: function () {
+                    prefillActualFinish(this.base.getView().getBindingContext());
+
                     if (this._subSectionsObserved) {
                         return;
                     }
                     this._subSectionsObserved = true;
+                    StockValueHelp.keepFresh(this.base.getView());
                     this.base
                         .getView()
                         .findAggregatedObjects(true, (control) => control.isA("sap.uxap.ObjectPageSubSection"))
