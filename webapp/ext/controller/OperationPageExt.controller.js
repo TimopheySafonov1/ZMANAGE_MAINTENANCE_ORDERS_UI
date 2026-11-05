@@ -1,4 +1,4 @@
-sap.ui.define(["sap/ui/core/mvc/ControllerExtension"], function (ControllerExtension) {
+sap.ui.define(["sap/ui/core/mvc/ControllerExtension", "mmo/ext/handler/ApplyValidation"], function (ControllerExtension, ApplyValidation) {
     "use strict";
 
     function hideEmptyRows(innerTable) {
@@ -24,6 +24,10 @@ sap.ui.define(["sap/ui/core/mvc/ControllerExtension"], function (ControllerExten
     return ControllerExtension.extend("mmo.ext.controller.OperationPageExt", {
         override: {
             routing: {
+                onBeforeNavigation: function (navigation) {
+                    return ApplyValidation.blocksNavigation(this.base.getView(), navigation.bindingContext);
+                },
+
                 onAfterBinding: function () {
                     if (this._subSectionsObserved) {
                         return;

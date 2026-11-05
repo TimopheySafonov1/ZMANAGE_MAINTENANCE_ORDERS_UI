@@ -79,6 +79,12 @@
           },
           "sap.fe.templates.ObjectPage.ObjectPageController#mmo::MaintenanceOperationObjectPage": {
             "controllerName": "mmo.ext.controller.OperationPageExt"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController#mmo::MaintenanceComponentObjectPage": {
+            "controllerName": "mmo.ext.controller.ItemPageExt"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController#mmo::MaintenancePrtObjectPage": {
+            "controllerName": "mmo.ext.controller.ItemPageExt"
           }
         }
       }
