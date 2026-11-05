@@ -75,6 +75,36 @@
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceComponentType/StorageLoc">
                 <Annotation Term="Common.Label" String="{@i18n>storageLocation}"/>
+                <Annotation Term="Common.ValueListReferences">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="{@i18n>storageLocation}"/>
+                        <PropertyValue Property="CollectionPath" String="StorageLocationVH"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="StorageLoc"/>
+                                    <PropertyValue Property="ValueListProperty" String="StorageLoc"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ComponentId"/>
+                                    <PropertyValue Property="ValueListProperty" String="Component"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Plant"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="StorageLocName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AvailableQuantity"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceComponentType">
                 <Annotation Term="UI.Facets">
@@ -102,6 +132,30 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.StorageLocationVHType/Plant">
+                <Annotation Term="Common.Label" String="{@i18n>plant}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.StorageLocationVHType/StorageLoc">
+                <Annotation Term="Common.Label" String="{@i18n>storageLocation}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.StorageLocationVHType/StorageLocName">
+                <Annotation Term="Common.Label" String="{@i18n>storageLocationName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.StorageLocationVHType/AvailableQuantity">
+                <Annotation Term="Common.Label" String="{@i18n>availableQuantity}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.PrtStorageLocationVHType/Plant">
+                <Annotation Term="Common.Label" String="{@i18n>plant}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.PrtStorageLocationVHType/StorageLoc">
+                <Annotation Term="Common.Label" String="{@i18n>storageLocation}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.PrtStorageLocationVHType/StorageLocName">
+                <Annotation Term="Common.Label" String="{@i18n>storageLocationName}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.PrtStorageLocationVHType/AvailableQuantity">
+                <Annotation Term="Common.Label" String="{@i18n>availableQuantity}"/>
             </Annotations>
             <Annotations Target="SAP__self.TechObjectVHType/TechObject">
                 <Annotation Term="Common.Label" String="{@i18n>technicalObject}"/>
@@ -228,6 +282,36 @@
             </Annotations>
             <Annotations Target="SAP__self.MaintenancePrtType/StorageLoc">
                 <Annotation Term="Common.Label" String="{@i18n>storageLocation}"/>
+                <Annotation Term="Common.ValueListReferences">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="{@i18n>storageLocation}"/>
+                        <PropertyValue Property="CollectionPath" String="PrtStorageLocationVH"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="StorageLoc"/>
+                                    <PropertyValue Property="ValueListProperty" String="StorageLoc"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PrtId"/>
+                                    <PropertyValue Property="ValueListProperty" String="Prt"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Plant"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="StorageLocName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AvailableQuantity"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
             </Annotations>
             <Annotations Target="SAP__self.MaintenancePrtType/PlannedUsageUnit">
                 <Annotation Term="Common.Label" String="{@i18n>plannedUsageUnit}"/>
