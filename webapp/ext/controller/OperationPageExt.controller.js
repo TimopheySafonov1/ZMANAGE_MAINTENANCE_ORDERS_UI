@@ -7,18 +7,28 @@ sap.ui.define([
 
     const EDITABLE = 7;
 
-    async function prefillActualFinish(context) {
+    async function prefillActuals(context) {
         if (!context) {
             return;
         }
-        const [isActive, finish, description, control] = await context.requestProperty([
-            "IsActiveEntity",
-            "ActualFinish",
-            "Description",
-            "__FieldControl/ActualFinish"
-        ]);
-        if (isActive === false && !finish && description && control === EDITABLE) {
-            context.setProperty("ActualFinish", new Date().toISOString());
+        const [isActive, start, finish, plannedStart, plannedFinish, startControl, finishControl] =
+            await context.requestProperty([
+                "IsActiveEntity",
+                "ActualStart",
+                "ActualFinish",
+                "PlannedStart",
+                "PlannedFinish",
+                "__FieldControl/ActualStart",
+                "__FieldControl/ActualFinish"
+            ]);
+        if (isActive !== false) {
+            return;
+        }
+        if (!start && plannedStart && startControl === EDITABLE) {
+            context.setProperty("ActualStart", plannedStart);
+        }
+        if (!finish && plannedFinish && finishControl === EDITABLE) {
+            context.setProperty("ActualFinish", plannedFinish);
         }
     }
 
@@ -50,7 +60,7 @@ sap.ui.define([
                 },
 
                 onAfterBinding: function () {
-                    prefillActualFinish(this.base.getView().getBindingContext());
+                    prefillActuals(this.base.getView().getBindingContext());
 
                     if (this._subSectionsObserved) {
                         return;

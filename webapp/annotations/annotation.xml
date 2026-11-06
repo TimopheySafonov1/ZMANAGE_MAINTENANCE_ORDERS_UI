@@ -171,6 +171,12 @@
             <Annotations Target="SAP__self.PrtStorageLocationVHType/AvailableQuantity">
                 <Annotation Term="Common.Label" String="{@i18n>availableQuantity}"/>
             </Annotations>
+            <Annotations Target="SAP__self.TechObjectVHType/WorkCenter">
+                <Annotation Term="Common.Label" String="{@i18n>mainWorkCenter}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.TechObjectHierarchyVHType/WorkCenter">
+                <Annotation Term="Common.Label" String="{@i18n>mainWorkCenter}"/>
+            </Annotations>
             <Annotations Target="SAP__self.TechObjectVHType/TechObject">
                 <Annotation Term="Common.Label" String="{@i18n>technicalObject}"/>
             </Annotations>
@@ -441,6 +447,20 @@
                 <Annotation Term="Common.Label" String="{@i18n>actualWorkH}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType">
+                <Annotation Term="Common.SideEffects" Qualifier="OperationStage">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>_Operations/Stage</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath>_Operations</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
                 <Annotation Term="UI.HeaderFacets">
                     <Collection>
                         <Record Type="UI.ReferenceFacet">
@@ -519,7 +539,7 @@
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>costItems}"/>
                             <PropertyValue Property="ID" String="CostItems"/>
-                            <PropertyValue Property="Target" AnnotationPath="_Costs/@UI.LineItem"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Costs/@UI.PresentationVariant#Sorted"/>
                         </Record>
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>status}"/>
@@ -763,10 +783,6 @@
                         <PropertyValue Property="SortOrder">
                             <Collection>
                                 <Record Type="Common.SortOrderType">
-                                    <PropertyValue Property="Property" PropertyPath="Stage"/>
-                                    <PropertyValue Property="Descending" Bool="false"/>
-                                </Record>
-                                <Record Type="Common.SortOrderType">
                                     <PropertyValue Property="Property" PropertyPath="OperationId"/>
                                     <PropertyValue Property="Descending" Bool="false"/>
                                 </Record>
@@ -887,6 +903,23 @@
                 <Annotation Term="Common.Label" String="{@i18n>pRTsActual}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceCostsType">
+                <Annotation Term="UI.PresentationVariant" Qualifier="Sorted">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="OperationId"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.LineItem</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.ReferenceFacet">
