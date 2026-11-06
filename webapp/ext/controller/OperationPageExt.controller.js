@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (ControllerExtension, ApplyValidation, StockValueHelp) {
     "use strict";
 
-    const EDITABLE = 7;
+    const READ_ONLY = 1;
 
     async function prefillActuals(context) {
         if (!context) {
@@ -24,10 +24,10 @@ sap.ui.define([
         if (isActive !== false) {
             return;
         }
-        if (!start && plannedStart && startControl === EDITABLE) {
+        if (!start && plannedStart && startControl > READ_ONLY) {
             context.setProperty("ActualStart", plannedStart);
         }
-        if (!finish && plannedFinish && finishControl === EDITABLE) {
+        if (!finish && plannedFinish && finishControl > READ_ONLY) {
             context.setProperty("ActualFinish", plannedFinish);
         }
     }

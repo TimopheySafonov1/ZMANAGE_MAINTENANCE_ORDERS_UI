@@ -5,3 +5,14 @@
 .mmoNoEmptyRows .sapUiTablePlaceholder {
     display: none;
 }
+
+.sapMInputBase.sapMInputBaseReadonly .sapMInputBaseContentWrapper {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.sapMInputBase.sapMInputBaseReadonly .sapMInputBaseInner {
+    padding-left: 0;
+    text-align: left !important;
+}
