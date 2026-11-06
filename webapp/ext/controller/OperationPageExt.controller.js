@@ -7,28 +7,18 @@ sap.ui.define([
 
     const READ_ONLY = 1;
 
-    async function prefillActuals(context) {
+    async function prefillActualStart(context) {
         if (!context) {
             return;
         }
-        const [isActive, start, finish, plannedStart, plannedFinish, startControl, finishControl] =
-            await context.requestProperty([
-                "IsActiveEntity",
-                "ActualStart",
-                "ActualFinish",
-                "PlannedStart",
-                "PlannedFinish",
-                "__FieldControl/ActualStart",
-                "__FieldControl/ActualFinish"
-            ]);
-        if (isActive !== false) {
-            return;
-        }
-        if (!start && plannedStart && startControl > READ_ONLY) {
+        const [isActive, start, plannedStart, control] = await context.requestProperty([
+            "IsActiveEntity",
+            "ActualStart",
+            "PlannedStart",
+            "__FieldControl/ActualStart"
+        ]);
+        if (isActive === false && !start && plannedStart && control > READ_ONLY) {
             context.setProperty("ActualStart", plannedStart);
-        }
-        if (!finish && plannedFinish && finishControl > READ_ONLY) {
-            context.setProperty("ActualFinish", plannedFinish);
         }
     }
 
@@ -60,7 +50,7 @@ sap.ui.define([
                 },
 
                 onAfterBinding: function () {
-                    prefillActuals(this.base.getView().getBindingContext());
+                    prefillActualStart(this.base.getView().getBindingContext());
 
                     if (this._subSectionsObserved) {
                         return;
