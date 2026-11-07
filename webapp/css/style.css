@@ -16,3 +16,22 @@
     padding-left: 0;
     text-align: left !important;
 }
+
+@media (min-width: 1024px) {
+    .sapFDynamicPageHeaderContent > .sapMFlexBox:has(.mmoHeaderKpis) {
+        flex-wrap: nowrap;
+    }
+
+    .sapFDynamicPageHeaderContent > .sapMFlexBox:has(.mmoHeaderKpis) > .sapMFlexItem {
+        min-width: 0;
+        flex-shrink: 1;
+    }
+
+    .sapFDynamicPageHeaderContent > .sapMFlexBox > .sapMFlexItem:has(.mmoHeaderKpis) {
+        flex-shrink: 0;
+    }
+
+    .sapMFlexBox.mmoHeaderKpis {
+        flex-wrap: nowrap;
+    }
+}

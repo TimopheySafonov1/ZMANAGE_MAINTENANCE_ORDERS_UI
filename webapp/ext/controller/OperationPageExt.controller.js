@@ -5,6 +5,58 @@ sap.ui.define([
 ], function (ControllerExtension, ApplyValidation, StockValueHelp) {
     "use strict";
 
+    const READ_ONLY = 1;
+
+    async function prefillActuals(context) {
+        if (!context) {
+            return;
+        }
+        const [
+            isActive,
+            control,
+            actualStart,
+            actualWork,
+            actualDuration,
+            plannedStart,
+            plannedWork,
+            plannedWorkUnit,
+            plannedDuration,
+            plannedDurationUnit
+        ] = await context.requestProperty([
+            "IsActiveEntity",
+            "__FieldControl/ActualStart",
+            "ActualStart",
+            "ActualWork",
+            "ActualWorkDuration",
+            "PlannedStart",
+            "PlannedWork",
+            "PlannedWorkUnit",
+            "PlannedWorkDuration",
+            "PlannedDurationUnit"
+        ]);
+        if (isActive !== false || control <= READ_ONLY) {
+            return;
+        }
+
+        const changes = [];
+        if (!actualStart && plannedStart) {
+            changes.push(["ActualStart", plannedStart]);
+        }
+        if (!Number(actualWork) && Number(plannedWork)) {
+            changes.push(["ActualWorkUnit", plannedWorkUnit], ["ActualWork", plannedWork]);
+        }
+        if (!Number(actualDuration) && Number(plannedDuration)) {
+            changes.push(["ActualDurationUnit", plannedDurationUnit], ["ActualWorkDuration", plannedDuration]);
+        }
+        if (changes.length) {
+            await Promise.all(changes.map(([property, value]) => context.setProperty(property, value)));
+            await context.requestSideEffects([
+                { $PropertyPath: "ActualFinish" },
+                { $NavigationPropertyPath: "_MaintenanceOrder" }
+            ]);
+        }
+    }
+
     function hideEmptyRows(innerTable) {
         const rowMode = innerTable.getRowMode?.();
         if (rowMode?.setHideEmptyRows && !rowMode.getHideEmptyRows()) {
@@ -33,6 +85,8 @@ sap.ui.define([
                 },
 
                 onAfterBinding: function () {
+                    prefillActuals(this.base.getView().getBindingContext());
+
                     if (this._subSectionsObserved) {
                         return;
                     }

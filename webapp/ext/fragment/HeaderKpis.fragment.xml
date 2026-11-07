@@ -20,7 +20,7 @@
         </VBox>
         <VBox class="sapUiMediumMarginEnd">
             <Title text="{i18n>headerCosts}" titleStyle="H5" class="sapUiTinyMarginBottom" />
-            <mc:ComparisonMicroChart width="12rem" height="4.5rem" hideOnNoData="false">
+            <mc:ComparisonMicroChart width="10rem" height="4.5rem" hideOnNoData="false">
                 <mc:data>
                     <mc:ComparisonMicroChartData
                         title="{i18n>headerPlanned}"
@@ -37,10 +37,10 @@
                 </mc:data>
             </mc:ComparisonMicroChart>
         </VBox>
-        <VBox width="12rem">
+        <VBox width="10rem">
             <Title text="{i18n>headerWork}" titleStyle="H5" class="sapUiTinyMarginBottom" />
             <mc:DeltaMicroChart
-                width="12rem"
+                width="10rem"
                 height="4.5rem"
                 hideOnNoData="false"
                 title1="{i18n>headerPlanned}"
