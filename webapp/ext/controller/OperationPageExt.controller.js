@@ -5,23 +5,6 @@ sap.ui.define([
 ], function (ControllerExtension, ApplyValidation, StockValueHelp) {
     "use strict";
 
-    const READ_ONLY = 1;
-
-    async function prefillActualStart(context) {
-        if (!context) {
-            return;
-        }
-        const [isActive, start, plannedStart, control] = await context.requestProperty([
-            "IsActiveEntity",
-            "ActualStart",
-            "PlannedStart",
-            "__FieldControl/ActualStart"
-        ]);
-        if (isActive === false && !start && plannedStart && control > READ_ONLY) {
-            context.setProperty("ActualStart", plannedStart);
-        }
-    }
-
     function hideEmptyRows(innerTable) {
         const rowMode = innerTable.getRowMode?.();
         if (rowMode?.setHideEmptyRows && !rowMode.getHideEmptyRows()) {
@@ -50,8 +33,6 @@ sap.ui.define([
                 },
 
                 onAfterBinding: function () {
-                    prefillActualStart(this.base.getView().getBindingContext());
-
                     if (this._subSectionsObserved) {
                         return;
                     }

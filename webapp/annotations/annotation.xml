@@ -428,6 +428,15 @@
             <Annotations Target="SAP__self.MaintenanceOrderType/MaintOrdBasicFinishDateTime">
                 <Annotation Term="Common.Label" String="{@i18n>basicFinishDate}"/>
             </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/MaintOrdActualStartDateTime">
+                <Annotation Term="Common.Label" String="{@i18n>actualStart}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/MaintOrdActualFinishDateTime">
+                <Annotation Term="Common.Label" String="{@i18n>actualFinish}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.MaintenanceOrderType/MaintOrdDelayHours">
+                <Annotation Term="Common.Label" String="{@i18n>delayHours}"/>
+            </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType/MaintOrdFinalDueDateTime">
                 <Annotation Term="Common.Label" String="{@i18n>finalDueDate}"/>
             </Annotations>
@@ -447,6 +456,23 @@
                 <Annotation Term="Common.Label" String="{@i18n>actualWorkH}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType">
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="OrderId"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.LineItem</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
                 <Annotation Term="Common.SideEffects" Qualifier="OperationStage">
                     <Record Type="Common.SideEffectsType">
                         <PropertyValue Property="SourceProperties">
