@@ -426,6 +426,33 @@
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType/Priority">
                 <Annotation Term="Common.Label" String="{@i18n>priority}"/>
+                <Annotation Term="Common.ValueListReferences">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="{@i18n>priority}"/>
+                        <PropertyValue Property="CollectionPath" String="OrderPriorityVH"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Priority"/>
+                                    <PropertyValue Property="ValueListProperty" String="Priority"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="OrderType"/>
+                                    <PropertyValue Property="ValueListProperty" String="OrderType"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="PriorityName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.OrderPriorityVHType/Priority">
+                <Annotation Term="Common.Label" String="{@i18n>priority}"/>
             </Annotations>
             <Annotations Target="SAP__self.MaintenanceOrderType/MaintRevision">
                 <Annotation Term="Common.Label" String="{@i18n>revision}"/>
