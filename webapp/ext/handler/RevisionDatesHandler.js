@@ -82,9 +82,9 @@ sap.ui.define(
                     return Promise.resolve();
                 }
                 return context
-                    .requestProperty(["MaintRevision", "MaintOrdBasicFinishDateTime"])
-                    .then(([revision, finish]) => {
-                        if (!revision || !finish) {
+                    .requestProperty(["MaintRevision", "MaintOrdBasicFinishDateTime", "OrderStatus"])
+                    .then(([revision, finish, status]) => {
+                        if (!revision || !finish || (status && status !== "CRTD")) {
                             return undefined;
                         }
                         return this.latestOperationFinish(context).then((latest) => {
