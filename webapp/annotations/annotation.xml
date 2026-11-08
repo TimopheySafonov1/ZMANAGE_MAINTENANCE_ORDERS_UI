@@ -89,6 +89,10 @@
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="ComponentId"/>
                                     <PropertyValue Property="ValueListProperty" String="Component"/>
                                 </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="OperationUuid"/>
+                                    <PropertyValue Property="ValueListProperty" String="OperationUuid"/>
+                                </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="Plant"/>
                                 </Record>
@@ -318,6 +322,10 @@
                                 <Record Type="Common.ValueListParameterIn">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="PrtId"/>
                                     <PropertyValue Property="ValueListProperty" String="Prt"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="OperationUuid"/>
+                                    <PropertyValue Property="ValueListProperty" String="OperationUuid"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="Plant"/>

@@ -10,6 +10,7 @@ sap.ui.define(
         "use strict";
 
         const dateFormat = DateFormat.getDateInstance({ style: "medium" });
+        const dateTimeFormat = DateFormat.getDateTimeInstance({ style: "medium" });
 
         return BaseObject.extend("mmo.ext.handler.RevisionDatesHandler", {
             constructor: function (model, resourceBundle) {
@@ -74,6 +75,66 @@ sap.ui.define(
                         }
                     }
                 );
+            },
+
+            confirmFinishDate: function (context) {
+                if (!context || context.getProperty("IsActiveEntity") !== false) {
+                    return Promise.resolve();
+                }
+                return context
+                    .requestProperty(["MaintRevision", "MaintOrdBasicFinishDateTime"])
+                    .then(([revision, finish]) => {
+                        if (!revision || !finish) {
+                            return undefined;
+                        }
+                        return this.latestOperationFinish(context).then((latest) => {
+                            if (!latest || new Date(latest).getTime() === new Date(finish).getTime()) {
+                                return undefined;
+                            }
+                            return this.askForFinishDate(context, finish, latest);
+                        });
+                    });
+            },
+
+            latestOperationFinish: function (context) {
+                return this._model
+                    .bindList("_Operations", context, null, null, { $select: "OperationUuid,PlannedFinish" })
+                    .requestContexts(0, Infinity)
+                    .then((operations) =>
+                        operations
+                            .map((operation) => operation.getProperty("PlannedFinish"))
+                            .filter(Boolean)
+                            .reduce((latest, finish) => (!latest || new Date(finish) > new Date(latest) ? finish : latest), undefined)
+                    );
+            },
+
+            askForFinishDate: function (context, revisionFinish, operationsFinish) {
+                const fromRevision = this._bundle.getText("finishFromRevision");
+                const fromOperations = this._bundle.getText("finishFromOperations");
+                return new Promise((resolve, reject) => {
+                    MessageBox.show(
+                        this._bundle.getText("chooseFinishDateQuestion", [
+                            dateTimeFormat.format(new Date(revisionFinish)),
+                            dateTimeFormat.format(new Date(operationsFinish))
+                        ]),
+                        {
+                            icon: MessageBox.Icon.QUESTION,
+                            title: this._bundle.getText("chooseFinishDateTitle"),
+                            actions: [fromRevision, fromOperations, MessageBox.Action.CANCEL],
+                            emphasizedAction: fromRevision,
+                            onClose: (action) => {
+                                if (action === fromRevision) {
+                                    resolve();
+                                } else if (action === fromOperations) {
+                                    Promise.resolve(context.setProperty("MaintOrdBasicFinishDateTime", operationsFinish))
+                                        .then(() => resolve(), reject);
+                                } else {
+                                    reject();
+                                }
+                            }
+                        }
+                    );
+                });
             },
 
             copyDates: function (context, revision) {

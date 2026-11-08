@@ -18,6 +18,12 @@ sap.ui.define(
                     }
                 },
 
+                editFlow: {
+                    onBeforeSave: function (parameters) {
+                        return this._revisionDates?.confirmFinishDate(parameters?.context);
+                    }
+                },
+
                 onExit: function () {
                     this._revisionDates?.destroy();
                 }
