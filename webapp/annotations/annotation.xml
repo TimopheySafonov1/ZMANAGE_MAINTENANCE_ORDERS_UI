@@ -113,6 +113,10 @@
                         <PropertyValue Property="SortOrder">
                             <Collection>
                                 <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="ItemNo"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                                <Record Type="Common.SortOrderType">
                                     <PropertyValue Property="Property" PropertyPath="ComponentId"/>
                                     <PropertyValue Property="Descending" Bool="true"/>
                                 </Record>
@@ -358,6 +362,10 @@
                     <Record Type="UI.PresentationVariantType">
                         <PropertyValue Property="SortOrder">
                             <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="ItemNo"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
                                 <Record Type="Common.SortOrderType">
                                     <PropertyValue Property="Property" PropertyPath="PrtId"/>
                                     <PropertyValue Property="Descending" Bool="true"/>
