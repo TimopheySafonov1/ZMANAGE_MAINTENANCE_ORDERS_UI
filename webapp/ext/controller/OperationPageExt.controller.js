@@ -14,10 +14,8 @@ sap.ui.define([
         const [
             isActive,
             control,
-            actualStart,
             actualWork,
             actualDuration,
-            plannedStart,
             plannedWork,
             plannedWorkUnit,
             plannedDuration,
@@ -25,10 +23,8 @@ sap.ui.define([
         ] = await context.requestProperty([
             "IsActiveEntity",
             "__FieldControl/ActualStart",
-            "ActualStart",
             "ActualWork",
             "ActualWorkDuration",
-            "PlannedStart",
             "PlannedWork",
             "PlannedWorkUnit",
             "PlannedWorkDuration",
@@ -39,9 +35,6 @@ sap.ui.define([
         }
 
         const changes = [];
-        if (!actualStart && plannedStart) {
-            changes.push(["ActualStart", plannedStart]);
-        }
         if (!Number(actualWork) && Number(plannedWork)) {
             changes.push(["ActualWorkUnit", plannedWorkUnit], ["ActualWork", plannedWork]);
         }
@@ -51,6 +44,7 @@ sap.ui.define([
         if (changes.length) {
             await Promise.all(changes.map(([property, value]) => context.setProperty(property, value)));
             await context.requestSideEffects([
+                { $PropertyPath: "ActualStart" },
                 { $PropertyPath: "ActualFinish" },
                 { $NavigationPropertyPath: "_MaintenanceOrder" }
             ]);
