@@ -566,6 +566,14 @@
                         <PropertyValue Property="SortOrder">
                             <Collection>
                                 <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="IsActiveEntity"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="HasActiveEntity"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                                <Record Type="Common.SortOrderType">
                                     <PropertyValue Property="Property" PropertyPath="OrderId"/>
                                     <PropertyValue Property="Descending" Bool="true"/>
                                 </Record>
