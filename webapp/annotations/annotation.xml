@@ -8,6 +8,9 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
         <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
     </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="HTML5"/>
+    </edmx:Reference>
     <edmx:Reference Uri="/sap/opu/odata4/sap/zui_ts_maintenance_order/srvd/sap/zui_ts_maintenance_order/0001/$metadata">
         <edmx:Include Namespace="com.sap.gateway.srvd.zui_ts_maintenance_order.v0001" Alias="SAP__self"/>
     </edmx:Reference>
@@ -730,6 +733,11 @@
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Description"/>
                             <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="TechObject"/>
