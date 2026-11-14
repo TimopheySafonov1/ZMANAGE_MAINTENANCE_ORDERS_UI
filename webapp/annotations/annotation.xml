@@ -567,7 +567,7 @@
                             <Collection>
                                 <Record Type="Common.SortOrderType">
                                     <PropertyValue Property="Property" PropertyPath="OrderId"/>
-                                    <PropertyValue Property="Descending" Bool="false"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
