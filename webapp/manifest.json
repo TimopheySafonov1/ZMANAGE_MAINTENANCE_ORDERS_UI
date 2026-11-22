@@ -231,6 +231,19 @@
                 }
               },
               "controlConfiguration": {
+                "_Operations/@com.sap.vocabularies.UI.v1.LineItem": {
+                  "columns": {
+                    "DataField::PersonResp": { "width": "11rem" },
+                    "DataField::OperationStatus": { "width": "8rem" },
+                    "DataField::WaitingFor": { "width": "14rem" },
+                    "DataField::PlannedWork": { "width": "11rem" },
+                    "DataField::PlannedWorkDuration": { "width": "11rem" },
+                    "DataField::ActualWork": { "width": "11rem" },
+                    "DataField::ActualWorkDuration": { "width": "11rem" },
+                    "DataField::PlannedStart": { "width": "10rem" },
+                    "DataField::PlannedFinish": { "width": "10rem" }
+                  }
+                },
                 "_Attachments/@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "ResponsiveTable",
